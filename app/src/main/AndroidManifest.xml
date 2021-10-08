@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.covihelp">
+
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.CoviHelp">
+        <activity
+            android:name=".covidHospitals"
+            android:label="Covid Hospitals"
+            android:parentActivityName=".MainActivity">
+
+        </activity>
+
+        <activity
+            android:name=".notsafe"
+            android:label="Maintain Distance"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".safe"
+            android:label="You are safe"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".BluetoothConfirm"
+            android:label="Bluetooth Confirm Page"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".ScanPage"
+            android:label="Scan Page"
+            android:parentActivityName=".BluetoothConfirm" />
+        <activity
+            android:name=".casesorg"
+            android:label="Cases"
+            android:parentActivityName=".MainActivity" />
+        <activity android:name=".MainActivity">
+            android:theme="@android:style/Theme.NoTitleBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

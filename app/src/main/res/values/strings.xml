@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">CoviHelp</string>
+    <string name="on">ON</string>
+    <string name="off">OFF</string>
+    <string name="sOn">Turn On</string>
+    <string name="sOff">Turn Off</string>
+    <string name="scan">Scan</string>
+    <string name="choose_your_city">CHOOSE YOUR CITY</string>
+    <string name="pune">PUNE</string>
+    <string name="todo1">TODO!</string>
+    <string name="todo">TODO</string>
+    <string name="confirmed">Confirmed:</string>
+    <string name="active">Active:</string>
+    <string name="recover">Recovered:</string>
+    <string name="Ded">Lost their life:</string>
+    <string name="detData">Detailed Data</string>
+    <string name="cSite">covid19india</string>
+    <string name="allIndiaVisit">Covid19India.org:</string>
+    <string-array name="location_name">
+        <item>hospital_name</item>
+    </string-array>
+
+</resources>
