@@ -44,8 +44,9 @@
             android:name=".casesorg"
             android:label="Cases"
             android:parentActivityName=".MainActivity" />
-        <activity android:name=".MainActivity">
-            android:theme="@android:style/Theme.NoTitleBar">
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/MainActivityT">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

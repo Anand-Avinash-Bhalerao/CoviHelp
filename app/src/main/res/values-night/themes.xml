@@ -2,10 +2,10 @@
     <!-- Base application theme. -->
     <style name="Theme.CoviHelp" parent="Theme.MaterialComponents.DayNight.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/cyan</item>
-        <item name="colorPrimaryVariant">@color/cyan</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryVariant">@color/dark_orange</item>
         <item name="colorOnPrimary">@color/black</item>
-        <item name="colorButtonNormal">@color/cyan</item>
+        <item name="colorButtonNormal">@color/orange</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
         <item name="colorSecondaryVariant">@color/teal_200</item>
