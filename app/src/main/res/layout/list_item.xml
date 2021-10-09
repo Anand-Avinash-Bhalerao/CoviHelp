@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="@string/confirmed"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="20sp">
 
             </TextView>
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:text="@string/active"
-                android:textColor="@color/white"
+                android:textColor="@color/orange"
                 android:textSize="20sp">
 
             </TextView>
