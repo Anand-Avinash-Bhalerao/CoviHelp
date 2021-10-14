@@ -40,14 +40,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView ded = holder.ded;
         LinearLayout linearLayout = holder.linearLayout;
         city.setText(covidCityStats.getCity());
+        city.setTextColor(ContextCompat.getColor(context,covidCityStats.getTitleColour()));
         confirmed.setText(String.valueOf(covidCityStats.getConfirmed()));
         active.setText(String.valueOf(covidCityStats.getActive()));
         recover.setText(String.valueOf(covidCityStats.getRecovered()));
         ded.setText(String.valueOf(covidCityStats.getDed()));
-        if(covidCityStats.getConfirmed()>1000000) {
-            linearLayout.setBackgroundResource(R.drawable.background_rounded_black);
-            city.setTextColor(ContextCompat.getColor(context, R.color.red));
-        }
+        linearLayout.setBackgroundResource(covidCityStats.getColor());
+
 
     }
     @Override

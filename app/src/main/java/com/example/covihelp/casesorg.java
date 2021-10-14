@@ -11,13 +11,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,7 +42,7 @@ public class casesorg extends AppCompatActivity {
     public List<CovidCityStats> covidCityStats = new ArrayList<>();
     public ListView listView;
     public RecyclerView recyclerView;
-//    public AdapterC adapterC;
+    //    public AdapterC adapterC;
     public RecyclerAdapter recyclerAdapter;
 
     @Override
@@ -176,6 +179,8 @@ public class casesorg extends AppCompatActivity {
                     JSONObject total = current.getJSONObject("total");
                     int confirmed = total.optInt("confirmed");
                     int ded = total.optInt("deceased");
+                    int color = confirmed > 500000 ? R.color.black : temp.getColor();
+                    int titColor = confirmed > 500000 ? R.color.red : temp.getTitleColour();
                     int recovered = total.optInt("recovered");
                     int active = confirmed - ded - recovered;
                     temp.setCity(city);
@@ -183,6 +188,8 @@ public class casesorg extends AppCompatActivity {
                     temp.setActive(active);
                     temp.setRecovered(recovered);
                     temp.setDed(ded);
+                    temp.setColor(color);
+                    temp.setTitleColour(titColor);
                     covidCityStats.add(temp);
                     Log.d(LOG_TAG, "City = " + city + ", Confirmed = " + confirmed + ",Active  = " + active + ",Recovered  = " + recovered + ", ded = " + ded);
                 }
