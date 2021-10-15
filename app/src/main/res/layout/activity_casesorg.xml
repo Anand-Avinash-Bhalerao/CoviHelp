@@ -40,17 +40,8 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <ListView
-            android:id="@+id/info_list"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="12dp"
-            android:divider="@null"
-            android:scrollbarStyle="insideOverlay"
-            android:scrollbars="vertical"
-            android:smoothScrollbar="true">
 
-        </ListView>
+
     </LinearLayout>
 
 

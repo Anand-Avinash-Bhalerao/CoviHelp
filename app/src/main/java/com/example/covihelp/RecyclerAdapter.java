@@ -46,7 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         recover.setText(String.valueOf(covidCityStats.getRecovered()));
         ded.setText(String.valueOf(covidCityStats.getDed()));
         linearLayout.setBackgroundResource(covidCityStats.getColor());
-
+        Log.d("DebugK", "added " + covidCityStats.getCity());
 
     }
     @Override

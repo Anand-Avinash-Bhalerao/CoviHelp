@@ -6,7 +6,7 @@ public class CovidCityStats {
     private String city;
     private int confirmed;
     private int active;
-    private int color = R.color.wheat;
+    private int color = R.drawable.background_rounded;
     private int titleColour = R.color.black;
     private int recovered;
     private int ded;
