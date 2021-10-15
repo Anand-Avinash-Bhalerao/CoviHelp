@@ -1,11 +1,31 @@
 package com.example.covihelp;
 
+import androidx.core.content.ContextCompat;
+
 public class CovidCityStats {
     private String city;
     private int confirmed;
     private int active;
+    private int color = R.drawable.background_rounded;
+    private int titleColour = R.color.black;
     private int recovered;
     private int ded;
+
+    public int getTitleColour() {
+        return titleColour;
+    }
+
+    public void setTitleColour(int titleColour) {
+        this.titleColour = titleColour;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     public int getActive() {
         return active;
