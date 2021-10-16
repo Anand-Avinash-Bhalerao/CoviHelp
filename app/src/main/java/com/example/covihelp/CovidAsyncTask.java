@@ -35,7 +35,7 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
     Activity activity;
     public ListView listView;
     public RecyclerView recyclerView;
-    public Context context;
+    public Context contextC;
     //    public AdapterC adapterC;
     public RecyclerAdapter recyclerAdapter;
     public static final String LOG_TAG = "DebugK";
@@ -57,7 +57,7 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
 
     public CovidAsyncTask(Context context) {
         super(context);
-        this.context = context;
+        contextC = context;
     }
 
     @Override
@@ -67,6 +67,12 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
 
     @Override
     public List<CovidCityStats> loadInBackground() {
+        try {
+            Toast.makeText(contextC, "Loaded the url again", Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Log.e("DebugK","Kuch toh hua inLoadInBackground me");
+            e.printStackTrace();
+        }
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;

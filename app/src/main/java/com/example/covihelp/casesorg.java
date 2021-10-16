@@ -1,39 +1,22 @@
 package com.example.covihelp;
 
-import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
-import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +26,8 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     public static final String LOG_TAG = "DebugK";
     public static final String covid_url = "https://data.covid19india.org/v4/min/data.min.json";
     public ArrayList<CovidCityStats> toDisplay;
+    TextView recycler_empty;
+    ProgressBar progressBar;
     public List<CovidCityStats> covidCityStats = new ArrayList<>();
 
 
@@ -88,10 +73,20 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public void onLoadFinished(@NonNull Loader<List<CovidCityStats>> loader, List<CovidCityStats> data) {
         Log.d("DebugK", "onLoadFinished k andar");
+        List<CovidCityStats> temp = new ArrayList<>();
+        progressBar = findViewById(R.id.progress_circular);
+        progressBar.setVisibility(View.GONE);
         RecyclerView recyclerView = findViewById(R.id.recycler);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, data);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recycler_empty = findViewById(R.id.recycler_empty);
+
+        if (data.size() == 0) {
+            recyclerView.setVisibility(View.GONE);
+            recycler_empty.setVisibility(View.VISIBLE);
+            recycler_empty.setText("No data was found!");
+        }
     }
 
     @Override
