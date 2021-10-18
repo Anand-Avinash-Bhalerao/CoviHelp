@@ -5,11 +5,32 @@ import androidx.core.content.ContextCompat;
 public class CovidCityStats {
     private String city;
     private int confirmed;
+    private boolean special = false;
     private int active;
     private int color = R.drawable.background_rounded;
+    public int BACCK = R.color.white_smoke;
+//    public int titleColor = R.attr.colorOnSecondary;
+//    public int BACCK = R.attr.colorSecondaryVariant;
     private int titleColour = R.color.black;
     private int recovered;
     private int ded;
+    private int backTint;
+
+    public int getBackTint() {
+        return backTint;
+    }
+
+    public void setBackTint(int backTint) {
+        this.backTint = backTint;
+    }
+
+    public boolean isSpecial() {
+        return special;
+    }
+
+    public void setSpecial(boolean special) {
+        this.special = special;
+    }
 
     public int getTitleColour() {
         return titleColour;

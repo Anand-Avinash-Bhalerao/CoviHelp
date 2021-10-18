@@ -1,39 +1,25 @@
 package com.example.covihelp;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.loader.app.LoaderManager;
-import androidx.loader.content.AsyncTaskLoader;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +29,9 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     public static final String LOG_TAG = "DebugK";
     public static final String covid_url = "https://data.covid19india.org/v4/min/data.min.json";
     public ArrayList<CovidCityStats> toDisplay;
+    TextView recycler_empty;
+    RecyclerView recyclerView;
+    ProgressBar progressBar;
     public List<CovidCityStats> covidCityStats = new ArrayList<>();
 
 
@@ -55,10 +44,21 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
 
         Log.d(LOG_TAG, "at the start the covid stats has " + covidCityStats.size());
 
+        recycler_empty = findViewById(R.id.recycler_empty);
+        recyclerView = findViewById(R.id.recycler);
+        progressBar = findViewById(R.id.progress_circular);
 
         try {
 //            adapterC = new AdapterC(this,  covidCityStats);
-            getSupportLoaderManager().initLoader(1, null, this);
+            if (isOnline())
+                getSupportLoaderManager().initLoader(1, null, this);
+            else {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                recycler_empty.setVisibility(View.VISIBLE);
+                recycler_empty.setText("Not connected to the internet.\nPlease try again");
+            }
+
 
         } catch (Exception e) {
             Log.e("Crash", "oncreate me ho raha hai problem");
@@ -88,14 +88,29 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public void onLoadFinished(@NonNull Loader<List<CovidCityStats>> loader, List<CovidCityStats> data) {
         Log.d("DebugK", "onLoadFinished k andar");
-        RecyclerView recyclerView = findViewById(R.id.recycler);
+        List<CovidCityStats> temp = new ArrayList<>();
+
+        progressBar.setVisibility(View.GONE);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, data);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        if (data.size() == 0) {
+            recyclerView.setVisibility(View.GONE);
+            recycler_empty.setVisibility(View.VISIBLE);
+            recycler_empty.setText("No data was found!");
+        }
     }
 
     @Override
     public void onLoaderReset(@NonNull Loader<List<CovidCityStats>> loader) {
 
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
     }
 }

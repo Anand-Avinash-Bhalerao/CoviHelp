@@ -1,6 +1,9 @@
 package com.example.covihelp;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,9 +48,11 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         active.setText(String.valueOf(covidCityStats.getActive()));
         recover.setText(String.valueOf(covidCityStats.getRecovered()));
         ded.setText(String.valueOf(covidCityStats.getDed()));
-        linearLayout.setBackgroundResource(covidCityStats.getColor());
-        Log.d("DebugK", "added " + covidCityStats.getCity());
-
+            linearLayout.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,covidCityStats.getBackTint())));
+        Log.d("ColorKa", "City- " + covidCityStats.getCity() + " and the color is " + covidCityStats.getBackTint()+" and red is "+R.color.red );
+//        linearLayout.setBackgroundResource(covidCityStats.getColor());
+//        linearLayout.setBackgroundTintList(ColorStateList.valueOf(covidCityStats.getBackTint()));
+//        linearLayout.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(context,covidCityStats.getBackTint())));
     }
     @Override
     public int getItemCount() {

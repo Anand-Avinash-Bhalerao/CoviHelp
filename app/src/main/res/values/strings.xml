@@ -16,6 +16,9 @@
     <string name="detData">Detailed Data</string>
     <string name="cSite">covid19india</string>
     <string name="allIndiaVisit">Covid19India.org:</string>
+    <string name="covid_19">Covid 19</string>
+    <string name="stay_safe">Stay Safe</string>
+    <string name="covidPic">CovidPic</string>
     <string-array name="location_name">
         <item>hospital_name</item>
     </string-array>

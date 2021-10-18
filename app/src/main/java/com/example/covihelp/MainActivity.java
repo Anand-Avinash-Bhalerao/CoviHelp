@@ -8,28 +8,43 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     Button Scanner;
     Button pdf;
-    RelativeLayout scan;
-    RelativeLayout guidelines;
+    LinearLayout scan;
+    LinearLayout gl;
+    LinearLayout hos;
+    LinearLayout cases;
+    LinearLayout vac;
+    LinearLayout updates;
+    ImageView covid;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-//        try
-//        {
-//            this.getSupportActionBar().hide();
-//        }
-//        catch (NullPointerException e){}
-
         setContentView(R.layout.activity_main);
+        scan = findViewById(R.id.scan);
+        gl = findViewById(R.id.gl);
+        hos = findViewById(R.id.hos);
+        cases = findViewById(R.id.cases);
+        vac = findViewById(R.id.vacc);
+        updates = findViewById(R.id.updates);
+        covid = findViewById(R.id.imageView);
+        scan.setOnClickListener(this::openActivity);
+        gl.setOnClickListener(this::openGD);
+        hos.setOnClickListener(this::openHospital);
+        cases.setOnClickListener(this::covidOrg);
+        vac.setOnClickListener(this::vaccine);
+        updates.setOnClickListener(this::updates);
+        covid.setOnClickListener(this::handWash);
     }
 
     public void openActivity(View v){
@@ -41,26 +56,17 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void openUrl(View view) {
+    public void openGD(View view) {
         Uri uri = Uri.parse("https://www.cdc.gov/coronavirus/2019-ncov/prevent-getting-sick/prevention-H.pdf"); // missing 'http://' will cause crashed
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
 
     }
 
-    public void Toast(View view) {
+    public void handWash(View view) {
         Toast.makeText(this, "AHHHHHHH Hand wash karo!!!", Toast.LENGTH_SHORT).show();
     }
-    public void Toast1(View view) {
-        Toast.makeText(this, "Tum logo k part se replace. ye temp hai", Toast.LENGTH_SHORT).show();
-    }
-    public void openCases(View view) {
-        Uri uri = Uri.parse("https://www.covid19india.org/");
-        Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-        startActivity(intent);
-    }
     public void hospitals(View view) {
-        Toast1(view);
         Uri uri = Uri.parse("https://www.cghspune.gov.in/images/stories/cghsimages/pdfs/hospitalcontacts.pdf");
         Intent intent = new Intent(Intent.ACTION_VIEW, uri);
         startActivity(intent);
@@ -76,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void coivdorg(View view) {
+    public void covidOrg(View view) {
         Intent intent = new Intent(this,casesorg.class);
         startActivity(intent);
     }

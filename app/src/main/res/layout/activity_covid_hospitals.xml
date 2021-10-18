@@ -4,17 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/creamL"
+    android:background="?attr/colorOnPrimary"
     tools:context=".MainActivity">
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="409dp"
-        android:layout_height="167dp"
-        android:layout_marginTop="436dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/imag" />
 
     <TextView
@@ -48,7 +51,7 @@
         android:layout_height="73dp"
         android:gravity="center"
         android:text="Click to check for the availability of bed in your area"
-        android:textColor="@color/black"
+        android:textColor="?attr/colorOnSecondary"
         android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
