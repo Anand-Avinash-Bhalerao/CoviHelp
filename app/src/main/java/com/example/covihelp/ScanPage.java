@@ -12,6 +12,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -79,6 +80,7 @@ public class ScanPage extends AppCompatActivity {
                     if (array.length != 0) {
                        int min = array[0];
                        for (int value : array) {
+                           Log.d("Bluetooth Devices", "value");
                             if (value >= min)
                                 min = value;
                        }

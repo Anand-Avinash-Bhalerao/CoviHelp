@@ -8,11 +8,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.loader.content.AsyncTaskLoader;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
@@ -69,8 +67,8 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
     public List<CovidCityStats> loadInBackground() {
         try {
             Toast.makeText(contextC, "Loaded the url again", Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Log.e("DebugK","Kuch toh hua inLoadInBackground me");
+        } catch (Exception e) {
+            Log.e("DebugK", "Kuch toh hua inLoadInBackground me");
             e.printStackTrace();
         }
         String jsonResponse = "";
@@ -112,8 +110,26 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
                 JSONObject total = current.getJSONObject("total");
                 int confirmed = total.optInt("confirmed");
                 int ded = total.optInt("deceased");
-                int color = confirmed > 500000 ? R.drawable.background_rounded_black : temp.getColor();
-                int titColor = confirmed > 500000 ? R.color.red : temp.getTitleColour();
+
+// Parse MyCustomStyle, using Context.obtainStyledAttributes()
+
+//                int color = confirmed > 500000 ? R.drawable.background_rounded_black : temp.BACCK
+                int back = R.color.grey;
+                int titColor = R.color.black;
+                if(confirmed>500000){
+                    back = R.color.maroon;
+                    titColor = R.color.red;
+                }
+                else if(confirmed >100000){
+                    back = R.color.orange;
+                }
+                else if(confirmed>50000){
+                    back = R.color.peach_puff;
+                }
+                else back = R.color._light_green;
+
+                Log.d("BackColor", "Wo sab ho gaya");
+//                int back = R.color.red;
                 int recovered = total.optInt("recovered");
                 int active = confirmed - ded - recovered;
                 temp.setCity(city);
@@ -121,7 +137,7 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
                 temp.setActive(active);
                 temp.setRecovered(recovered);
                 temp.setDed(ded);
-                temp.setColor(color);
+                temp.setBackTint(back);
                 temp.setTitleColour(titColor);
                 covidCityStats.add(temp);
                 Log.d(LOG_TAG, "City = " + city + ", Confirmed = " + confirmed + ",Active  = " + active + ",Recovered  = " + recovered + ", ded = " + ded);

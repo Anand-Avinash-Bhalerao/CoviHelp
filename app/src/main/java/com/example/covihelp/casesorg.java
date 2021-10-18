@@ -1,6 +1,9 @@
 package com.example.covihelp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +30,7 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     public static final String covid_url = "https://data.covid19india.org/v4/min/data.min.json";
     public ArrayList<CovidCityStats> toDisplay;
     TextView recycler_empty;
+    RecyclerView recyclerView;
     ProgressBar progressBar;
     public List<CovidCityStats> covidCityStats = new ArrayList<>();
 
@@ -40,10 +44,21 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
 
         Log.d(LOG_TAG, "at the start the covid stats has " + covidCityStats.size());
 
+        recycler_empty = findViewById(R.id.recycler_empty);
+        recyclerView = findViewById(R.id.recycler);
+        progressBar = findViewById(R.id.progress_circular);
 
         try {
 //            adapterC = new AdapterC(this,  covidCityStats);
-            getSupportLoaderManager().initLoader(1, null, this);
+            if (isOnline())
+                getSupportLoaderManager().initLoader(1, null, this);
+            else {
+                progressBar.setVisibility(View.GONE);
+                recyclerView.setVisibility(View.GONE);
+                recycler_empty.setVisibility(View.VISIBLE);
+                recycler_empty.setText("Not connected to the internet.\nPlease try again");
+            }
+
 
         } catch (Exception e) {
             Log.e("Crash", "oncreate me ho raha hai problem");
@@ -74,13 +89,11 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     public void onLoadFinished(@NonNull Loader<List<CovidCityStats>> loader, List<CovidCityStats> data) {
         Log.d("DebugK", "onLoadFinished k andar");
         List<CovidCityStats> temp = new ArrayList<>();
-        progressBar = findViewById(R.id.progress_circular);
+
         progressBar.setVisibility(View.GONE);
-        RecyclerView recyclerView = findViewById(R.id.recycler);
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, data);
         recyclerView.setAdapter(recyclerAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recycler_empty = findViewById(R.id.recycler_empty);
 
         if (data.size() == 0) {
             recyclerView.setVisibility(View.GONE);
@@ -92,5 +105,12 @@ public class casesorg extends AppCompatActivity implements LoaderManager.LoaderC
     @Override
     public void onLoaderReset(@NonNull Loader<List<CovidCityStats>> loader) {
 
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        return (networkInfo != null && networkInfo.isConnected());
     }
 }
