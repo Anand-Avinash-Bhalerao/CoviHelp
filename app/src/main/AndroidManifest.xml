@@ -18,12 +18,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoviHelp">
         <activity
+            android:name=".HosInfoPage"
+            android:exported="true" />
+        <activity
             android:name=".covidHospitals"
             android:label="Covid Hospitals"
-            android:parentActivityName=".MainActivity">
-
-        </activity>
-
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".notsafe"
             android:label="Maintain Distance"
