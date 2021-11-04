@@ -11,7 +11,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.view.View;
 import android.widget.*;
-//yes it works on the browser
+//yes it works on the browser and this is the tempory branch
 public class BluetoothConfirm extends AppCompatActivity {
     BluetoothAdapter myAdapter=BluetoothAdapter.getDefaultAdapter();
     TextView stateText;
