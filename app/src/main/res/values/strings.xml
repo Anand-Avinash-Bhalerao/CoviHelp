@@ -19,6 +19,7 @@
     <string name="covid_19">Covid 19</string>
     <string name="stay_safe">Stay Safe</string>
     <string name="covidPic">CovidPic</string>
+    <string name="no_data_found">No data was found!</string>
     <string-array name="location_name">
         <item>hospital_name</item>
     </string-array>

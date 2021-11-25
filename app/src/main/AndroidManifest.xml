@@ -41,8 +41,9 @@
             android:label="Scan Page"
             android:parentActivityName=".BluetoothConfirm" />
         <activity
-            android:name=".casesorg"
+            android:name=".CasesPage"
             android:label="Cases"
+            android:theme="@style/MainActivityT"
             android:parentActivityName=".MainActivity" />
         <activity
             android:name=".MainActivity"
