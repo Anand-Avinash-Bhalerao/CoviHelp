@@ -2,18 +2,13 @@ package com.example.covihelp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
@@ -83,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void covidOrg(View view) {
-        Intent intent = new Intent(this,casesorg.class);
+        Intent intent = new Intent(this, CasesPage.class);
         startActivity(intent);
     }
 

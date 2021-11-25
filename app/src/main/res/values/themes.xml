@@ -63,4 +63,7 @@
     <style name="backColor">
         <item name="android:background">@color/white_smoke</item>
     </style>
+    <style name="search">
+        <item name="android:background">@drawable/background_rounded</item>
+    </style>
 </resources>

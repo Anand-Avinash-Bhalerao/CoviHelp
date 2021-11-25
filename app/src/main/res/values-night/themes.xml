@@ -54,4 +54,7 @@
     <style name="lllll">
         <item name="android:background">@color/grey</item>
     </style>
+    <style name="search">
+        <item name="android:background">@drawable/background_rounded_black</item>
+    </style>
 </resources>

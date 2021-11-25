@@ -37,7 +37,8 @@ public class CovidAsyncTask extends AsyncTaskLoader<List<CovidCityStats>> {
     //    public AdapterC adapterC;
     public RecyclerAdapter recyclerAdapter;
     public static final String LOG_TAG = "DebugK";
-    public static final String covid_url = "https://data.covid19india.org/v4/min/data.min.json";
+//    public static final String covid_url = "https://data.covid19india.org/v4/min/data.min.json";
+    public static final String covid_url = "https://data.incovid19.org/v4/min/data.min.json";
     public ArrayList<CovidCityStats> toDisplay;
     public List<CovidCityStats> covidCityStats = new ArrayList<>();
 
