@@ -39,7 +39,7 @@ public class CasesPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_casesorg);
+        setContentView(R.layout.activity_cases_page);
         covidOrg = findViewById(R.id.covid19india);
 
 //        Log.d(LOG_TAG, "at the start the covid stats has " + covidCityStats.size());

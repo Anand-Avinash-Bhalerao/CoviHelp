@@ -18,6 +18,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoviHelp">
         <activity
+            android:name=".Hospital_Further_Info"
+            android:exported="true" />
+        <activity
             android:name=".HosInfoPage"
             android:exported="true" />
         <activity
@@ -43,8 +46,8 @@
         <activity
             android:name=".CasesPage"
             android:label="Cases"
-            android:theme="@style/MainActivityT"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/MainActivityT" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/MainActivityT">

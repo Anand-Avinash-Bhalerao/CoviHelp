@@ -17,7 +17,7 @@
         android:queryBackground="@android:color/transparent"
         android:iconifiedByDefault="false"
         android:queryHint="Enter the city name"
-        style="@style/search"
+        style="@style/simple_background_rounded"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -70,7 +70,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/list_item" />
+            tools:listitem="@layout/cases_list_item" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
