@@ -18,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CoviHelp">
         <activity
+            android:name=".DevicesName"
+            android:label="Devices Found"
+            android:exported="true" />
+        <activity
             android:name=".Hospital_Further_Info"
             android:exported="true" />
         <activity

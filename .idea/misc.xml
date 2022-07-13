@@ -10,10 +10,12 @@
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/drawable/bgapp.xml" value="0.240625" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/drawable/temp.xml" value="0.240625" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout-land/activity_main.xml" value="0.1328125" />
+        <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout-land/activity_scan_page.xml" value="0.264" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_bluetooth_confirm.xml" value="0.176" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_cases_page.xml" value="0.2203125" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_casesorg.xml" value="0.16799999999999998" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_covid_hospitals.xml" value="0.264" />
+        <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_devices_name.xml" value="0.15572916666666667" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_hos_info_page.xml" value="0.4" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_hospital_further_info.xml" value="0.4" />
         <entry key="..\:/PBl project/app 5.0/app/src/main/res/layout/activity_hospital_info.xml" value="0.20208333333333334" />

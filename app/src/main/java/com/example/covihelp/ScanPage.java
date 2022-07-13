@@ -27,13 +27,14 @@ import java.util.ArrayList;
 
 
 public class ScanPage extends AppCompatActivity {
-    public static final String EXTRA_NAME=" com.example.covihelp.extra.name";
+    public static final String EXTRA_NAME = " com.example.covihelp.extra.name";
     Button scanButton;
     ListView scanListView;
     RippleBackground findDe;
     ArrayList<String> stringArrayList = new ArrayList<>();
+    ArrayList<String> nameArrayList = new ArrayList<>();
     ArrayAdapter<String> arrayAdapter;
-    BluetoothAdapter myAdapter= BluetoothAdapter.getDefaultAdapter();
+    BluetoothAdapter myAdapter = BluetoothAdapter.getDefaultAdapter();
 
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -47,10 +48,10 @@ public class ScanPage extends AppCompatActivity {
         scanListView = findViewById(R.id.ListView);
 
         //permission check
-        int permissionCheck=this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+        int permissionCheck = this.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
         permissionCheck += this.checkSelfPermission("Manifest.permission.ACCESS_COARSE_LOCATION");
         if (permissionCheck != 0)
-            this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION},1001);
+            this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
 
 
         IntentFilter intentFilter = new IntentFilter(BluetoothDevice.ACTION_FOUND);
@@ -58,49 +59,54 @@ public class ScanPage extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter<>(getApplicationContext(), android.R.layout.simple_list_item_1, stringArrayList);
         scanListView.setAdapter(arrayAdapter);
 
-
-
-
 //        scanButton.setOnClickListener(v -> {
-                //start animation
-                findDe.startRippleAnimation();
-                //request to be discoverable for 120 sec
-                startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE), 1);
-                myAdapter.startDiscovery();
-                Toast.makeText(this, "Please wait for 12 Seconds", Toast.LENGTH_SHORT).show();
-                new Handler(Looper.getMainLooper()).postDelayed(() -> {
-                    findDe.stopRippleAnimation();
-                    myAdapter.cancelDiscovery();
-                    int[] array=new int[stringArrayList.size()];
+        //start animation
+        findDe.startRippleAnimation();
+        //request to be discoverable for 120 sec
+        startActivityForResult(new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE), 1);
+        myAdapter.startDiscovery();
+        Toast.makeText(this, "Please wait for 12 Seconds", Toast.LENGTH_SHORT).show();
+        new Handler(Looper.getMainLooper()).postDelayed(() -> {
+            findDe.stopRippleAnimation();
+            myAdapter.cancelDiscovery();
+//            int[] array = new int[stringArrayList.size()];
+//
+//            for (int i = 0; i < stringArrayList.size(); i++) {
+//                array[i] = Integer.parseInt(stringArrayList.get(i));
+//            }
+//
+//            if (array.length != 0) {
+//                int min = array[0];
+//                for (int value : array) {
+//                    Log.d("Bluetooth Devices", "value");
+//                    if (value >= min)
+//                        min = value;
+//                }
+//                if (min > -60) {
+//                    Intent intent = new Intent(this, notsafe.class);
+//                    intent.putExtra("LIST",stringArrayList);
+//
+//                    startActivity(intent);
+//                    Toast.makeText(this, "" + min, Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Intent intent = new Intent(this, safe.class);
+//                    intent.putExtra("LIST",stringArrayList);
+//                    startActivity(intent);
+//                    Toast.makeText(this, "" + min, Toast.LENGTH_SHORT).show();
+//                }
+//            } else {
+//                Intent intent = new Intent(this, safe.class);
+//                intent.putExtra("LIST",stringArrayList);
+//                Toast.makeText(this, "empty- 0", Toast.LENGTH_SHORT).show();
+//                startActivity(intent);
+//            }
+            Intent intent = new Intent(this, DevicesName.class);
+            intent.putExtra("LIST", nameArrayList);
+            startActivity(intent);
 
-                    for (int i = 0; i < stringArrayList.size(); i++) {
-                        array[i] = Integer.parseInt(stringArrayList.get(i));
-                    }
 
-                    if (array.length != 0) {
-                       int min = array[0];
-                       for (int value : array) {
-                           Log.d("Bluetooth Devices", "value");
-                            if (value >= min)
-                                min = value;
-                       }
-                       if(min>-60) {
-                           Intent intent = new Intent(this, notsafe.class);
-                           startActivity(intent);
-                           Toast.makeText(this, ""+min, Toast.LENGTH_SHORT).show();
-                       }
-                       else {
-                           Intent intent = new Intent(this, safe.class);
-                           startActivity(intent);
-                           Toast.makeText(this, ""+min, Toast.LENGTH_SHORT).show();
-                       }
-                    } else {
-                        Intent intent = new Intent(this, safe.class);
-                        Toast.makeText(this, "empty- 0", Toast.LENGTH_SHORT).show();
-                        startActivity(intent);
-                    }
-                }, 12000);
-                stringArrayList.clear();
+        }, 12000);
+        stringArrayList.clear();
 //        });
     }
 
@@ -108,11 +114,22 @@ public class ScanPage extends AppCompatActivity {
         @Override
         public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if(BluetoothDevice.ACTION_FOUND.equals(action)){
-                int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI,Short.MIN_VALUE);
+            Log.d("DEVICE_FOUND", "found 1");
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
+                int rssi = intent.getShortExtra(BluetoothDevice.EXTRA_RSSI, Short.MIN_VALUE);
+
+
+                BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                String deviceName = device.getName();
+                String deviceHardwareAddress = device.getAddress(); // MAC address
+
+                nameArrayList.add("Device name: "+deviceName+"\nMacAddress: "+deviceHardwareAddress+"\n");
                 stringArrayList.add(String.valueOf(rssi));
+                Log.d("DEVICE_FOUND", "The rssi is " + rssi + " and the name is " + deviceName + " and mac is " + deviceHardwareAddress);
                 arrayAdapter.notifyDataSetChanged();
             }
         }
     };
+
+    //added in my new branch
 }
