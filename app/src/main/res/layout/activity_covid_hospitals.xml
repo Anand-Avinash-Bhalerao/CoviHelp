@@ -33,6 +33,7 @@
         android:text="See Pune Bed Availability"
         android:textColor="@color/cyan"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/search_hospital" />
 

@@ -76,10 +76,6 @@ public class BluetoothConfirm extends AppCompatActivity {
                         Toast.makeText(this, "Please Allow Bluetooth", Toast.LENGTH_SHORT).show();
                     }
                 }, 4000);
-
-
-                    
-
             }
 
         });
